@@ -51,6 +51,9 @@ import kanku from '../../assests/audio/kata_names/kanku.mp3';
 import tensho from '../../assests/audio/kata_names/tensho.mp3';
 import sushiho from '../../assests/audio/kata_names/sushiho.mp3';
 
+// const seipi = new Audio(seipai);
+// seipi.autoplay = true;
+
 const kataSounds = {
   [KataNames.Taikyoku_Sono_Ichi]: new Audio(taikyoku_sono_ichi),
   [KataNames.Taikyoku_Sono_Ni]: new Audio(taikyoku_sono_ni),
@@ -91,6 +94,46 @@ const kataSounds = {
   [KataNames.Tensho]: new Audio(tensho),
 };
 
+const kataSounds2 = {
+  [KataNames.Taikyoku_Sono_Ichi]: taikyoku_sono_ichi,
+  [KataNames.Taikyoku_Sono_Ni]: taikyoku_sono_ni,
+  [KataNames.Sokugi_Taikyoku_Sono_Ichi]: sokugi_taikyoku_sono_ichi,
+
+  [KataNames.Taikyoku_Sono_San]: taikyoku_sono_san,
+  [KataNames.Sokugi_Taikyoku_Sono_Ni]: sokugi_taikyoku_sono_ni,
+  [KataNames.Sokugi_Taikyoku_Sono_San]: sokugi_taikyoku_sono_san,
+
+  [KataNames.Pinan_Sono_Ichi]: pinan_sono_ichi,
+  [KataNames.Pinan_Sono_Ni]: pinan_sono_ni,
+  [KataNames.Sanchin]: sanchin,
+
+  [KataNames.Pinan_Sono_San]: pinan_sono_san,
+  [KataNames.Pinan_Sono_Yon]: pinan_sono_yon,
+  [KataNames.Yantsu]: yantsu,
+  [KataNames.Tsuki_No_Kata]: tsukino_kata,
+
+  [KataNames.Pinan_Sono_Go]: pinan_sono_go,
+  [KataNames.Geksai_Sono_Ichi]: geksai_sono_ichi,
+  [KataNames.Geksai_Sono_Ni]: geksai_sono_ni,
+  [KataNames.Tekki_Sono_Ichi]: tekki_sono_ichi,
+
+  [KataNames.Saifa]: saifa,
+  [KataNames.Geksai_Sono_San]: geksai_sono_san,
+  [KataNames.Tekki_Sono_Ni]: tekki_sono_ni,
+
+  [KataNames.Basai]: basai,
+  [KataNames.Seienchin]: seienchin,
+  [KataNames.Garyu]: garyo,
+  [KataNames.Tekki_Sono_San]: tekki_sono_san,
+
+  [KataNames.Seipai]: seipai,
+
+  [KataNames.Kanku]: kanku,
+
+  [KataNames.Sushiho]: sushiho,
+  [KataNames.Tensho]: tensho,
+};
+
 export const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -98,8 +141,17 @@ const mokso_delay = 5000;
 export const kata_name_delay = mokso_delay + 3000;
 export const yoy_delay = kata_name_delay + 2000;
 
+const handlePlay = (audio: any) => {
+  audio.autoplay = true;
+};
+
+// const disableAutoPlay = ()
+
 export const play = (kataName: KataNames) => {
-  sleep(mokso_delay).then(() => new Audio(mokso).play());
-  sleep(kata_name_delay).then(() => kataSounds[kataName].play());
-  sleep(yoy_delay).then(() => new Audio(yoy).play());
+  sleep(mokso_delay).then(() => handlePlay(new Audio(mokso)));
+  sleep(kata_name_delay).then(() =>
+    handlePlay(new Audio(kataSounds2[kataName]))
+  );
+  // sleep(kata_name_delay).then(() => kataSounds[kataName].play());
+  sleep(yoy_delay).then(() => handlePlay(new Audio(yoy)));
 };
