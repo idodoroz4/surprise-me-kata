@@ -91,11 +91,12 @@ const kataSounds = {
   [KataNames.Tensho]: new Audio(tensho),
 };
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 const mokso_delay = 5000;
-const kata_name_delay = mokso_delay + 3000;
-const yoy_delay = kata_name_delay + 2000;
+export const kata_name_delay = mokso_delay + 3000;
+export const yoy_delay = kata_name_delay + 2000;
 
 export const play = (kataName: KataNames) => {
   sleep(mokso_delay).then(() => new Audio(mokso).play());
