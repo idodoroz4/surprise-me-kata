@@ -5,6 +5,7 @@ import { getKatasForRange, getMarks, randomKata } from './utils';
 import { Ranks } from '../../consts';
 import { Button } from '@mui/material';
 import Logo from '../../assests/logo/logo.png';
+import { play } from './playKata';
 
 type RankPickerProps = {};
 
@@ -48,7 +49,11 @@ const RankPicker: React.FC<RankPickerProps> = () => {
           borderColor: 'white',
         }}
         variant="outlined"
-        onClick={() => setKataName(randomKata(getKatasForRange(v)))}
+        onClick={() => {
+          const kataName = randomKata(getKatasForRange(v));
+          setKataName(kataName);
+          play(kataName);
+        }}
       >
         Surprise Me
       </Button>

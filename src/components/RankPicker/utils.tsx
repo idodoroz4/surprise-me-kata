@@ -10,7 +10,7 @@ import ShoDanBeltImg from '../../assests/belt colors/sho-dan.jpg';
 import NiDanBeltImg from '../../assests/belt colors/ni-dan.jpg';
 import SanDanBeltImg from '../../assests/belt colors/san-dan.jpg';
 import YonDanBeltImg from '../../assests/belt colors/yon-dan.jpg';
-import { Ranks, katas } from '../../consts';
+import { KataNames, Ranks, katas } from '../../consts';
 
 const isInRange = (markValue: Ranks, sliderMarks: Ranks[]) =>
   markValue >= sliderMarks[0] && markValue <= sliderMarks[1];
@@ -128,10 +128,10 @@ export const getMarks = (sliderRangeValues: Ranks[]): any => [
   },
 ];
 
-export const getRankKatas = (rank: Ranks): string[] => katas[rank];
+export const getRankKatas = (rank: Ranks): KataNames[] => katas[rank];
 
 export const getKatasForRange = (rankRange: Ranks[]) => {
-  let katas: string[] = [];
+  let katas: KataNames[] = [];
   for (let i = rankRange[0]; i <= rankRange[1]; i++) {
     katas = [...katas, ...getRankKatas(i)];
   }
@@ -139,5 +139,5 @@ export const getKatasForRange = (rankRange: Ranks[]) => {
   return katas;
 };
 
-export const randomKata = (katas: string[]): string =>
+export const randomKata = (katas: KataNames[]): KataNames =>
   katas[Math.floor(Math.random() * katas.length)];
