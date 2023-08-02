@@ -5,7 +5,7 @@ import { getKatasForRange, getMarks, randomKata } from './utils';
 import { Ranks } from '../../consts';
 import { Button } from '@mui/material';
 import Logo from '../../assests/logo/logo.png';
-import { play } from './playKata';
+import { kata_name_delay, play, sleep, yoy_delay } from './playKata';
 
 type RankPickerProps = {};
 
@@ -13,6 +13,7 @@ const RankPicker: React.FC<RankPickerProps> = () => {
   const defaultValue = [Ranks.WHITE, Ranks.YONDAN];
   const [v, setV] = React.useState<any>(defaultValue);
   const [kataName, setKataName] = React.useState<string>('');
+  const [isBtnDisabled, setisBtnDisabled] = React.useState<boolean>(false);
   const marks = getMarks(v);
 
   return (
@@ -49,9 +50,12 @@ const RankPicker: React.FC<RankPickerProps> = () => {
           borderColor: 'white',
         }}
         variant="outlined"
+        disabled={isBtnDisabled}
         onClick={() => {
+          setisBtnDisabled(true);
           const kataName = randomKata(getKatasForRange(v));
-          setKataName(kataName);
+          sleep(kata_name_delay).then(() => setKataName(kataName));
+          sleep(yoy_delay).then(() => setisBtnDisabled(false));
           play(kataName);
         }}
       >
