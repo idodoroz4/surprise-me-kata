@@ -52,6 +52,7 @@ const RankPicker: React.FC<RankPickerProps> = () => {
         variant="outlined"
         disabled={isBtnDisabled}
         onClick={() => {
+          setKataName('');
           setisBtnDisabled(true);
           const kataName = randomKata(getKatasForRange(v));
           sleep(kata_name_delay).then(() => setKataName(kataName));
