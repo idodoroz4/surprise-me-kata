@@ -19,7 +19,7 @@ const RankPicker: React.FC<RankPickerProps> = () => {
   return (
     <Stack
       sx={{
-        height: 700,
+        height: 600,
         width: 500,
         display: 'flex',
         flexDirection: 'column',
@@ -29,9 +29,9 @@ const RankPicker: React.FC<RankPickerProps> = () => {
       spacing={3}
       direction="column"
     >
-      <img src={Logo} alt="" style={{ marginBottom: '20px' }} />
+      {/* <img src={Logo} alt="" style={{ marginBottom: '20px' }} /> */}
       <Slider
-        sx={{ color: 'white', right: 75 }}
+        sx={{ color: 'white', right: 55 }}
         orientation="vertical"
         defaultValue={defaultValue}
         max={10}
